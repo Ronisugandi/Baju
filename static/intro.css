@@ -1,0 +1,106 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: url(/static/uploads/toko.jpg) no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  min-height: 100vh;
+}
+
+/* Intro wrapper styling */
+.intro-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3rem 4rem;
+  background: rgba(0, 0, 0, 0.6); /* semi-transparent overlay */
+}
+
+/* Text styling */
+h1 {
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 3rem;
+}
+
+.lead {
+  color: #cccccc;
+  font-size: 1.25rem;
+  max-width: 500px;
+}
+
+/* Button styling */
+.btn-primary {
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  font-weight: bold;
+  padding: 10px 24px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #f1f1f1;
+  color: #000;
+  transform: scale(1.05);
+}
+
+/* Animasi gambar */
+img.floating-shoe,
+img.img-fluid {
+  animation: float 3s ease-in-out infinite;
+  max-height: 350px;
+  border-radius: 10px;
+}
+
+/* Keyframe untuk floating animation */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+/* 🔽 Responsif di layar kecil */
+@media (max-width: 768px) {
+  .intro-wrapper {
+    flex-direction: column;
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .lead {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn {
+    margin-top: 1rem;
+  }
+
+  img.floating-shoe,
+  img.img-fluid {
+    max-width: 80%;
+    height: auto;
+    margin-top: 1rem;
+  }
+}
+
+.intro-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .intro-wrapper {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+}

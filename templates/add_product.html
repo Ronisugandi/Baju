@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tambah Produk</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f9f9f9;
+            padding: 30px;
+        }
+
+        h1 {
+            color: #2c3e50;
+        }
+
+        form {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin-top: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .ukuran-item {
+            margin-top: 10px;
+        }
+
+        .ukuran-item input {
+            width: 45%;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .ukuran-item button {
+            background-color: #e74c3c;
+        }
+
+        .ukuran-item button:hover {
+            background-color: #c0392b;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #3498db;
+        }
+    </style>
+    <script>
+        function tambahUkuran() {
+            const container = document.getElementById('ukuran-container');
+            const div = document.createElement('div');
+            div.className = 'ukuran-item';
+            div.innerHTML = `
+                <input type="text" name="size[]" placeholder="Ukuran">
+                <input type="number" name="stock[]" placeholder="Stok">
+                <button type="button" onclick="this.parentElement.remove()">❌</button>
+            `;
+            container.appendChild(div);
+        }
+    </script>
+</head>
+<body>
+
+    <h1>Tambah Produk</h1>
+
+    <form action="{{ url_for('add_product') }}" method="POST" enctype="multipart/form-data">
+        <label>Nama Produk:</label>
+        <input type="text" name="name" required>
+
+        <label>Harga Produk:</label>
+        <input type="number" name="price" required>
+
+        <label>Gambar Produk:</label>
+        <input type="file" name="image" required>
+
+        <label>Ukuran & Stok:</label>
+        <div id="ukuran-container">
+            <div class="ukuran-item">
+                <input type="text" name="size[]" placeholder="Ukuran">
+                <input type="number" name="stock[]" placeholder="Stok">
+                <button type="button" onclick="this.parentElement.remove()">❌</button>
+            </div>
+        </div>
+        <button type="button" onclick="tambahUkuran()">➕ Tambah Ukuran</button>
+
+        <br>
+        <button type="submit">Simpan Produk</button>
+    </form>
+
+    <a href="{{ url_for('admin_dashboard') }}">🔙 Kembali ke Dashboard</a>
+
+</body>
+</html>

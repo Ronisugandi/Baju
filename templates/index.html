@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="text-center mb-4">Daftar Produk</h2>
+
+<div class="row justify-content-center">
+  {% for product in products %}
+    <div class="col-12 col-sm-6 col-md-4 mb-4 d-flex align-items-stretch">
+      <div class="card w-100 shadow-sm">
+        <img src="{{ url_for('static', filename=product.image) }}" class="card-img-top" alt="{{ product.name }}">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <p class="card-text fw-semibold">Harga: Rp {{ "{:,.0f}".format(product.price) }}</p>
+          <p class="card-text">
+            Ukuran tersedia:
+            <br>
+            {% for size in product.sizes %}
+              {% if size.stock > 0 %}
+                <span class="badge bg-info text-dark me-1">{{ size.size }} ({{ size.stock }})</span>
+              {% endif %}
+            {% endfor %}
+          </p>
+          <a href="{{ url_for('checkout', id=product.id) }}" class="btn btn-primary mt-auto">Beli</a>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}
