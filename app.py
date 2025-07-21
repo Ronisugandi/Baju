@@ -5,6 +5,8 @@ from urllib.parse import quote
 from functools import wraps
 import os
 from flask_login import current_user
+from flask import render_template
+from models import Product
 
 from models import db, Admin, Product, ProductSize, User
 
@@ -193,6 +195,20 @@ def logout():
     session.pop('user_id', None)
     flash("Berhasil logout", "info")
     return redirect(url_for('index'))
+
+@app.route('/beranda')
+def beranda():
+    produk = Product.query.all()
+    return render_template('beranda.html', Product=Product)
+
+@app.route("/produk/<int:produk_id>")
+def detail_produk(produk_id):
+    produk = Product.query.get_or_404(produk_id)
+    ukuran_list = produk.size.split(",")
+    stok_list = produk.stock.split(",")
+    return render_template("detail_produk.html", produk=produk, ukuran=ukuran_list, stok=stok_list)
+
+
 
 @app.route('/')
 def intro():

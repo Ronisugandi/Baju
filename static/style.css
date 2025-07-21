@@ -128,3 +128,25 @@ input.form-control {
     height: 180px;
   }
 }
+
+body {
+    font-family: sans-serif;
+    margin: 20px;
+}
+
+.produk-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.produk-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.produk-card img {
+    max-width: 100%;
+    height: auto;
+}
